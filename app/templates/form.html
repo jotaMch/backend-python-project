@@ -20,12 +20,12 @@
         <div id="result"></div>
         
         <form method="post" name="form" 
-        action="{% if db %}/update/{{db.id}}/{% else %}/create/{% endif %}" 
+        action="/update/{{db.id}}/" 
         id="form">
             {% csrf_token %}
-            <div class="form_group mt-2">modelo: {{form.modelo}}</div>
-            <div class="form_group mt-2">marca: {{form.marca}}</div>
-            <div class="form_group mt-2">ano: {{form.ano}}</div>
+            <div class="form_group mt-2">prato: {{form.prato}}</div>
+            <div class="form_group mt-2">preço: {{form.preco}}</div>
+            <div class="form_group mt-2">porção: {{form.porcao}}</div>
             <input type="submit" value="Salvar" class="btn btn-success">
         </form>
     </div>

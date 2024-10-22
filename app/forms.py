@@ -1,8 +1,8 @@
 from django.forms import ModelForm
-from app.models import Carros
+from app.models import Pratos
 
 # Create the form class.
-class CarrosForm(ModelForm):
+class PratosForm(ModelForm):
     class Meta:
-        model = Carros
-        fields = ["modelo", "marca", "ano"]
+        model = Pratos
+        fields = ["prato", "preco", "porcao"]
