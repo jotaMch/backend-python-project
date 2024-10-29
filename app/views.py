@@ -3,7 +3,6 @@ from app.forms import PratosForm
 from app.models import Pratos
 from django.core.paginator import Paginator
 
-# Create your views here.
 
 def products(request): 
     return render(request, 'products.html' )
@@ -15,11 +14,9 @@ def cart(request):
         data['db'] = Pratos.objects.filter(prato__icontains=search)
     else:
         data['db'] = Pratos.objects.all()
-        print(data, 'hello')
     
     total_price = sum(item.preco for item in data['db'])
     
-    # Passa o total para o template
     data['total_price'] = total_price
     
     return render(request, 'cart.html', data)
@@ -64,7 +61,20 @@ def delete(request, pk):
     return redirect('cart')
 
 def production(request):
-    data = {}
-    data['db'] = Pratos.objects.all()
-    print(data)
-    return render(request, 'production.html', data)
+    if request.method == 'POST':
+        db = Pratos.objects.all()
+        
+        if db.exists():  
+            data = {
+                'db': db  
+            }
+        else:
+            data = {
+                'message': 'Nenhum pedido foi feito ainda.'  
+            }
+        return render(request, 'production.html', data)
+    else:
+        data = {
+            'message': 'Nenhum pedido foi feito ainda.'
+        }
+        return render(request, 'production.html', data)

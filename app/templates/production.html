@@ -41,17 +41,20 @@
 
     <div class="container mt-4 fw-bold">
         <div class="row justify-content-center g-4">
-            {% for production in db %}
-            <!-- Colunas de grid responsivas -->
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-                <div class="order-card bg-warning text-dark p-3">
-                    <h5 class="order-header">{{ production.prato }}</h5>
-                    <p>Preço: R$ {{ production.preco }}</p>
-                    <p>Porção: {{ production.porcao }}</p>
-                    <p>Pedido Nº: {{ production.id }}</p>
+            {% if db %}
+                {% for production in db %}
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                    <div class="order-card bg-warning text-dark p-3">
+                        <h5 class="order-header">{{ production.prato }}</h5>
+                        <p>Preço: R$ {{ production.preco }}</p>
+                        <p>Porção: {{ production.porcao }}</p>
+                        <p>Pedido Nº: {{ production.id }}</p>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% else %}
+                <p class="text-light">{{ message }}</p>
+            {% endif %}
         </div>
     </div>
 

@@ -37,17 +37,13 @@
             </div>
             {% endfor %}
         
-            <form action="{% url 'production' %}" method="post">
-                {% csrf_token %}
-                <!-- Pode enviar os IDs dos itens selecionados ou todos os itens do carrinho -->
-                <input class="col-8" type="text" name="items" value="{{ db.pratos }}">
-                <button type="submit" class="btn btn-warning rounded-0 fw-bold">Comprar</button>
-            </form>
-            
             <!-- Mostra o valor total -->
             <div class="mt-4 d-flex justify-content-between align-items-end border border-warning p-2">
                 <strong class="card-text text-white">Valor total: R$ {{ total_price }}</strong>
-                <button type="button" class="btn btn-warning rounded-0 fw-bold">Comprar</button>
+                <form method="POST" action="{% url 'production' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning rounded-0 fw-bold">Comprar</button>
+                </form>
             </div>
             
         </div>
